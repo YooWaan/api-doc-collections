@@ -1,0 +1,9 @@
+machine:
+  timezone:
+    Asia/Tokyo
+
+general:
+  branches:
+    ignore:
+      - gh-pages
+
