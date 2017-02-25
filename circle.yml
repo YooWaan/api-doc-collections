@@ -18,6 +18,8 @@ dependencies:
     - npm install
     - npm install -g bootprint
     - npm install -g bootprint-openapi
+    # for rmal
+    - npm install -g raml2html
 
 test:
   pre:

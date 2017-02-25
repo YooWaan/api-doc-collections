@@ -12,10 +12,15 @@ mkdir $DIST_DIR/bootprint
 cd bootprint && node build.js > swagger.yaml && cd ..
 bootprint openapi bootprint/swagger.yaml $DIST_DIR/bootprint
 
+# RAML
+raml2html raml/api.raml > dist/raml-api.html
+
+
+
+
 # iodocs
 
 
-# RAML
 
 
 # sphinx
