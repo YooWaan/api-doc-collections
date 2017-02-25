@@ -1,0 +1,24 @@
+machine:
+  timezone:
+    Asia/Tokyo
+
+
+general:
+  artifacts:
+    - "dist/aglio-api.html"
+
+dependencies:
+  pre:
+    # for aglio
+    - npm install -g aglio
+
+test:
+  pre:
+    - sh build.sh
+
+deployment:
+  master:
+    commands:
+      - git fetch && git checkout gh-pages
+      - git add index.html && git add dist && git commit -m "ci build [$CIRCLE_BUILD_NUM] commit"
+      - git push origin gh-pages
