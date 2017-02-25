@@ -8,7 +8,9 @@ rm -rf $DIST_DIR ; mkdir -p $DIST_DIR
 aglio -i aglio/api.md -o $DIST_DIR/aglio-api.html
 
 # blueprint
-
+mkdir $DIST_DIR/bootprint
+cd bootprint && node build.js > swagger.yaml && cd ..
+bootprint openapi bootprint/swagger.yaml $DIST_DIR/bootprint
 
 # iodocs
 

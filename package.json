@@ -1,0 +1,15 @@
+{
+  "name": "swagger-example",
+  "version": "1.0.0",
+  "description": "nothing",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^3.8.1",
+    "json-refs": "^2.1.6",
+    "yaml-js": "^0.1.4"
+  }
+}

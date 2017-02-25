@@ -1,0 +1,18 @@
+swagger: '2.0'
+info:
+  title: Example API
+  description: API Document Collections
+  version: '1.0.0'
+# the domain of the service
+host: api-doc.example.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  $ref: './src/paths.yaml'
+definitions:
+  $ref: './src/definitions.yaml'

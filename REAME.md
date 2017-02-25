@@ -1,9 +1,11 @@
 # api document collections
 
+![build status](https://circleci.com/gh/YooWaan/api-doc-collections/tree/master.svg?style=shield&circle-token=8a6d503af04a4ee052696ccc29586372f5b2a175)
+
 ## setup tools
 
 - aglio  ```npm install -g aglio```
-- blueprint ```blueprint openapi  ```
+- bootprint ```npm install blueprint -g && npm install bootprint-openapi```
 
 
 

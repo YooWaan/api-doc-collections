@@ -1,0 +1,39 @@
+/notes:
+  get:
+    summary: notes
+    description: |
+      nothing.
+    parameters:
+      - name: q
+        in: query
+        description: search query
+        required: false
+        type: strig
+    tags:
+      - Notes
+    responses:
+      200:
+        description: An array of notes
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Note'
+      default:
+        description: Unexpected error
+        schema:
+          $ref: '#/definitions/Error'
+/users:
+  get:
+    summary: User Profile
+    description: The User Profile endpoint
+    tags:
+      - Users
+    responses:
+      200:
+        description: Profile information for a user
+        schema:
+          $ref: '#/definitions/User'
+      default:
+        description: Unexpected error
+        schema:
+          $ref: '#/definitions/Error'
