@@ -17,7 +17,8 @@ test:
     - sh build.sh
 
 deployment:
-  master:
+  public:
+    branch: master
     commands:
       - git fetch && git checkout gh-pages
       - git add index.html && git add dist && git commit -m "ci build [$CIRCLE_BUILD_NUM] commit"
