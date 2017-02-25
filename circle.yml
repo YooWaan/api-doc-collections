@@ -22,12 +22,14 @@ dependencies:
 test:
   pre:
     - sh build.sh
+    - mv index.html new.html
 
 deployment:
   public:
     branch: master
     commands:
       - git fetch && git checkout gh-pages
+      - mv new.html index.html
       - cp -r dist/* samples/
       - git add index.html && git add samples && git commit -m "ci build [$CIRCLE_BUILD_NUM] commit"
       - git push origin gh-pages
