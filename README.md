@@ -5,7 +5,7 @@
 ## setup tools
 
 - aglio  ```npm install -g aglio```
-- bootprint ```npm install blueprint -g && npm install bootprint-openapi```
+- bootprint ```npm install bootprint -g && npm install bootprint-openapi```
 - raml ```npm install -g raml2html```
 - apidoc ```npm install -g apidoc```
 
