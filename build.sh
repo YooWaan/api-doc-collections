@@ -15,11 +15,9 @@ bootprint openapi bootprint/swagger.yaml $DIST_DIR/bootprint
 # RAML
 raml2html raml/api.raml > dist/raml-api.html
 
-
-
-
-# iodocs
-
+# apidocs
+mkdir $DIST_DIR/apidoc
+apidoc -i apidoc -o $DIST_DIR/apidoc
 
 
 
