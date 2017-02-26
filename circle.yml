@@ -20,6 +20,8 @@ dependencies:
     - npm install -g bootprint-openapi
     # for rmal
     - npm install -g raml2html
+    # for apidoc
+    - npm install -g apidoc
 
 test:
   pre:
