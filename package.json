@@ -1,7 +1,7 @@
 {
   "name": "api_collection_tools",
   "version": "1.0.0",
-  "description": "nothing",
+  "description": "sample api doc",
   "main": "index.js",
   "scripts": {
     "start": "echo js",
