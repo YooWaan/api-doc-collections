@@ -3,7 +3,7 @@ version: 2
 jobs:
   prep:
     docker:
-      - image: circleci/10.15-stretch-browsers
+      - image: circleci/node:10.15-stretch-browsers
     working_directory: ~/api-pages
     steps:
       - checkout
@@ -19,7 +19,7 @@ jobs:
 
   docbuild:
     docker:
-      - image: circleci/10.15-stretch-browsers
+      - image: circleci/node:10.15-stretch-browsers
     working_directory: ~/api-pages
     steps:
       - checkout
@@ -40,7 +40,7 @@ jobs:
 
   ghpages:
     docker:
-      - image: circleci/10.15-stretch-browsers
+      - image: circleci/node:10.15-stretch-browsers
     working_directory: ~/api-pages
     steps:
       - checkout
