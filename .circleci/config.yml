@@ -29,7 +29,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Build API Documents
-          command: npm run build
+          command: |
+            sudo apt install build-essential
+            npm run build
 
       - store_artifacts:
         path: ~/api-pages/dist
