@@ -3,7 +3,7 @@ version: 2
 jobs:
   prep:
     docker:
-      - image: circleci/node:10.15-stretch-browsers
+      - image: circleci/node:10.13-stretch-browsers
     working_directory: ~/api-pages
     steps:
       - checkout
@@ -11,7 +11,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install npm wee
-          command: npm install
+          command: |
+            npm install
+            npm audit fix
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -19,7 +21,7 @@ jobs:
 
   docbuild:
     docker:
-      - image: circleci/node:10.15-stretch-browsers
+      - image: circleci/node:10.13-stretch-browsers
     working_directory: ~/api-pages
     steps:
       - checkout
@@ -40,7 +42,7 @@ jobs:
 
   ghpages:
     docker:
-      - image: circleci/node:10.15-stretch-browsers
+      - image: circleci/node:10.13-stretch-browsers
     working_directory: ~/api-pages
     steps:
       - checkout
