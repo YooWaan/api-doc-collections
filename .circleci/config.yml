@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  prep:
+  prep-and-docbuild
     docker:
       - image: circleci/node:6
     working_directory: ~/api-pages
@@ -10,27 +10,15 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install npm wee
+          name: Install npm and build
           command: |
             sudo apt install build-essential
             npm install
+            npm run build
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ~/api-pages/node_modules
-
-  docbuild:
-    docker:
-      - image: circleci/node:6
-    working_directory: ~/api-pages
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Build API Documents
-          command: |
-            npm run build
 
       - store_artifacts:
           path: ~/api-pages/dist
@@ -63,7 +51,4 @@ workflows:
   version: 2
   api_docs:
     jobs:
-      - prep
-      - docbuild:
-          requires:
-            - prep
+      - prep-and-docbuild
