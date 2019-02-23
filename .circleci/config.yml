@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Install npm wee
           command: npm install
-      - save_caches:
+      - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ~/api-pages/node_modules
@@ -33,7 +33,7 @@ jobs:
         path: ~/api-pages/dist
         destination: scan-test-results
 
-      - save_caches:
+      - save_cache:
           key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
           paths:
             - ~/api-pages/dist
