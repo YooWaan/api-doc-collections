@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "echo js",
-    "build": "for a in `echo 'aglio bootprint raml apidocs'`; do npm run $a ;done",
+    "build": "for a in `echo 'aglio bootprint raml apidoc'`; do npm run $a ;done",
     "aglio": "aglio -i aglio/api.md -o dist/aglio-api.html",
     "bootprint": "npm run swagger2 && npm run openapi",
     "swagger2": "cd bootprint && node build.js > swagger.yaml",
