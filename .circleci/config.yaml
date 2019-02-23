@@ -1,0 +1,64 @@
+version: 2
+
+jobs:
+  prep:
+    docker:
+      - image: circleci/10.15-stretch-browsers
+    working_directory: ~/api-pages
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install npm wee
+          command: npm install
+      - save_caches:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ~/api-pages/node_modules
+
+  docbuild:
+    docker:
+      - image: circleci/10.15-stretch-browsers
+    working_directory: ~/api-pages
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Build API Documents
+          command: npm run build
+
+      - store_artifacts:
+        path: ~/api-pages/dist
+        destination: scan-test-results
+
+      - save_caches:
+          key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
+          paths:
+            - ~/api-pages/dist
+
+  ghpages:
+    docker:
+      - image: circleci/10.15-stretch-browsers
+    working_directory: ~/api-pages
+    steps:
+      - checkout
+      - restore_cache:
+          key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
+      - run:
+          name: prep
+          command: |
+            cp index.html new.html
+            git checkout gh-pages
+            mv new.html index.html
+            cp -r dist/* samples/
+            git add index.html && git add samples && git commit -m "ci build [$CIRCLE_BUILD_NUM] commit"
+            git push origin gh-pages
+
+workflows:
+  version: 2
+  api_docs:
+    jobs:
+      - prep
+      - docbuild
