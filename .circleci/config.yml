@@ -41,6 +41,8 @@ jobs:
       - run:
           name: prep
           command: |
+            git config --global user.name "CircleCI"
+            git config --global user.email "circleci@example.com"
             cp index.html new.html
             git checkout gh-pages
             mv new.html index.html
