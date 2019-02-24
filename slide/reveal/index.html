@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-markdown>
+				  <textarea data-template>
+					## 今日の話
+
+					* Document のツラミ
+					* Tool あれこれ
+					* 雑感・所感
+
+				  </textarea>
+				</section>
+
+				<section>
+				  <h2>今日話さない事</h2>
+
+				  <ul>
+					<li>ツールを使ったコード生成</li>
+					<li>テスト</li>
+					<li>モックサーバー</li>
+				  </ul>
+				  
+				</section>
+				
+				<section>
+				  <h2>Document のツラミ</h2>
+
+				  <p>
+					その昔は、<b>wiki</b> とか <b>Excel</b> とかで書いてがんばってた
+				  </p>
+
+				  <p>
+					wiki とか Excel とか差分がわからない問題もあった
+				  </p>
+
+				  <p>
+					そのたびに自動化してーと思いをつのらせていた
+				  </p>
+
+				</section>
+
+				<section>
+				  <h2>で、選択肢</h2>
+
+				  <ol>
+					<li>そのまま</li>
+					<li>ツールで頑張ろう</li>
+					<li>コードにコメント書ていこう</li>
+				  </ol>
+
+				</section>
+
+				<section>
+				  <h2>Tools</h2>
+
+				  <table>
+					<tr>
+					  <th>Name</th>
+					  <th>Description</th>
+					  <th>Links</th>
+					</tr>
+					<tr>
+					  <td>Blueprint</td>
+					  <td>markdown</td>
+					  <td><a href="https://apiblueprint.org/">apiblueprint.org</a></td>
+					</tr>
+					<h1></h1>
+					<tr>
+					  <td>apidocs</td>
+					  <td>@でソースに書く</td>
+					  <td><a href="http://apidocjs.com/">apidocjs.com</a></td>
+					</tr>
+					<tr>
+					  <td>raml</td>
+					  <td>yaml</td>
+					  <td><a href="https://raml.org/">raml.org</a></td>
+					</tr>
+					<tr>
+					  <td>openapi</td>
+					  <td>yaml or json</td>
+					  <td><a href="https://swagger.io">swagger.io</a></td>
+					</tr>
+				  </table>
+
+				</section>
+				
+				<section>
+				  <h2>私の回遊の話</h2>
+				  <ol>
+				  
+				  <li>
+					bootprint(openapi) のAPI仕様書があった
+				  </li>
+
+				  <li>
+					なんか出力Htmlよくわからないな...
+				  </li>
+
+				  <li>
+					<a href="https://qiita.com/sheepland/items/b4a0d03941f2e3cd8eaa">API Blueprintとその周辺ツール</a>
+					見た目良さげやん これや
+				  </li>
+
+				  <li>
+					Blueprint 界隈盛り上がらないな Openapi 強いからこれにしよ
+					Htmlも切れになったし ← イマココ
+				  </li>
+
+				  </ol>
+
+				</section>
+
+				<section>
+				  <h2>多分決めの視点</h2>
+
+				  <ul>
+					<li>書きやすさ</li>
+					<li>出力の見た目と渡し易さ</li>
+					<li>必要な項目の充実</li>
+					<li>学習コスト</li>
+					<li>エコシステムの充実</li>
+				  </ul>
+
+				</section>
+				
+				<section>
+				  <h2>API Blueprint vs Swagger</h2>
+
+				  <a href="https://stackshare.io/stackups/api-blueprint-vs-swagger-ui">比較</a>
+
+				</section>
+
+				
+				<section>
+
+				  <table>
+					<tr>
+					  <th>Name</th>
+					  <th>Modeling</th>
+					  <th>Code</th>
+					  <th>Test</th>
+					  <th>Doc</th>
+					  <th>標準化</th>
+					</tr>
+					<tr>
+					  <th>blueprint</th>
+					  <td>×</td>
+					  <td>×</td>
+					  <td>×</td>
+					  <td>○</td>
+					  <td>○</td>
+					</tr>
+					<tr>
+					  <th>raml</th>
+					  <td>○</td>
+					  <td>○</td>
+					  <td>○</td>
+					  <td>○</td>
+					  <td>×</td>
+					</tr>
+					<tr>
+					  <th>apidocs</th>
+					  <td>×</td>
+					  <td>×</td>
+					  <td>×</td>
+					  <td>○</td>
+					  <td>×</td>
+					</tr>
+					<tr>
+					  <th><small>openapi</small></th>
+					  <td>○</td>
+					  <td>○</td>
+					  <td>○</td>
+					  <td>○</td>
+					  <td>○</td>
+					</tr>
+				  </table>
+
+				  
+
+				</section>
+
+				
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
