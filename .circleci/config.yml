@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Install npm and build
           command: |
-            sudo apt install build-essential
+            sudo apt install build-essential python-pip
             sudo pip install pyyaml
             npm install
             mkdir -p dist/{apidoc,bootprint}
