@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>API Doc 自動化の話</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -44,14 +44,14 @@
 					<li>テスト</li>
 					<li>モックサーバー</li>
 				  </ul>
-				  
+
 				</section>
-				
+
 				<section>
 				  <h2>Document のツラミ</h2>
 
 				  <p>
-					その昔は、<b>wiki</b> とか <b>Excel</b> とかで書いてがんばってた
+					その昔は、「<b>wiki</b>」「<b>Excel</b>」 とかで書いてがんばってた
 				  </p>
 
 				  <p>
@@ -76,9 +76,10 @@
 				</section>
 
 				<section>
-				  <h2>Tools</h2>
-
+					<h2>Tools</h2>
+					
 				  <table>
+
 					<tr>
 					  <th>Name</th>
 					  <th>Description</th>
@@ -108,11 +109,59 @@
 				  </table>
 
 				</section>
-				
+
+				<section>
+					<h4>雰囲気で書いた</h4>
+
+					<table>
+					<tr>
+						<th>Name</th>
+						<th>Modeling</th>
+						<th>Code</th>
+						<th>Test</th>
+						<th>Doc</th>
+						<th>標準化</th>
+					</tr>
+					<tr>
+						<th>blueprint</th>
+						<td>×</td>
+						<td>×</td>
+						<td>×</td>
+						<td>○</td>
+						<td>○</td>
+					</tr>
+					<tr>
+						<th>raml</th>
+						<td>○</td>
+						<td>○</td>
+						<td>○</td>
+						<td>○</td>
+						<td>×</td>
+					</tr>
+					<tr>
+						<th>apidocs</th>
+						<td>×</td>
+						<td>×</td>
+						<td>×</td>
+						<td>○</td>
+						<td>×</td>
+					</tr>
+					<tr>
+						<th><small>openapi</small></th>
+						<td>○</td>
+						<td>○</td>
+						<td>○</td>
+						<td>○</td>
+						<td>○</td>
+					</tr>
+					</table>
+
+				</section>
+	
 				<section>
 				  <h2>私の回遊の話</h2>
 				  <ol>
-				  
+
 				  <li>
 					bootprint(openapi) のAPI仕様書があった
 				  </li>
@@ -147,7 +196,7 @@
 				  </ul>
 
 				</section>
-				
+
 				<section>
 				  <h2>API Blueprint vs Swagger</h2>
 
@@ -155,57 +204,122 @@
 
 				</section>
 
-				
 				<section>
 
-				  <table>
-					<tr>
-					  <th>Name</th>
-					  <th>Modeling</th>
-					  <th>Code</th>
-					  <th>Test</th>
-					  <th>Doc</th>
-					  <th>標準化</th>
-					</tr>
-					<tr>
-					  <th>blueprint</th>
-					  <td>×</td>
-					  <td>×</td>
-					  <td>×</td>
-					  <td>○</td>
-					  <td>○</td>
-					</tr>
-					<tr>
-					  <th>raml</th>
-					  <td>○</td>
-					  <td>○</td>
-					  <td>○</td>
-					  <td>○</td>
-					  <td>×</td>
-					</tr>
-					<tr>
-					  <th>apidocs</th>
-					  <td>×</td>
-					  <td>×</td>
-					  <td>×</td>
-					  <td>○</td>
-					  <td>×</td>
-					</tr>
-					<tr>
-					  <th><small>openapi</small></th>
-					  <td>○</td>
-					  <td>○</td>
-					  <td>○</td>
-					  <td>○</td>
-					  <td>○</td>
-					</tr>
-				  </table>
-
-				  
+					<h1>雑感</h1>
 
 				</section>
 
-				
+				<section>
+					<h4>Raml</h4>
+
+					<pre><code class="yaml">#%RAML 1.0
+title: RAML sample api
+version: 1
+baseUri: http://example.com/v1
+/notes:
+  description: notes for users
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "note": "Hello world"
+              }</code></pre>
+
+				</section>
+
+				<section>
+					<h4>Raml Command</h4>
+<pre><code class="shell"># install
+$ npm install -g raml2html
+
+# generate html
+$ raml2html api.raml > dist/raml-api.html
+</code></pre>
+
+				</section>
+
+				<section>
+						<h4>apiDocs</h4>
+
+<pre style="font-size:16px;"><code class="python">"""
+@api {get} /notes Request User's notes
+@apiVersion 0.1.0
+@apiName Notes List
+@apiGroup Notes
+@apiParam {String} q search query.
+@apiSuccess (200) {Object[]} notes          notes list
+@apiSuccess (200) {String}   notes.message  notes message
+@apiSuccessExample {json} Success-Response:
+	HTTP/1.1 200 OK
+	[
+		{
+			"message": "Hello"
+		},
+		{
+			"message": "Hello"
+		}
+	]
+"""
+def get_notes():
+  pass
+</code></pre>
+				</section>
+
+				<section>
+					<h4>apiDocs</h4>
+
+<pre><code class="shell"># install
+$ npm install -g apidoc
+
+# generate html
+$ apidoc -i apidoc -o dist/apidoc.html
+</code></pre>
+
+				</section>
+
+				<section>
+					<h4>Bootprint</h4>
+<pre style="font-size:16px;"><code class="yaml">swagger: '2.0'
+info:
+  title: Example API
+  description: API Document Collections
+  version: '1.0.0'
+# the domain of the service
+host: api-doc.example.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  $ref: './src/paths.yaml'
+definitions:
+  $ref: './src/definitions.yaml'</code></pre>
+				</section>
+
+				<section>
+						<h4>Bootprint Command</h4>
+<pre><code class=""># install
+$ npm install bootprint
+$ npm install bootprint-openapi
+
+# generate html
+$ bootprint openapi bootprint/swagger.yaml dist/bootprint
+</code></pre>
+									
+				</section>
+
+				<section>
+						<h4>Swagger UI</h4>
+		
+				</section>
+
 			</div>
 		</div>
 
