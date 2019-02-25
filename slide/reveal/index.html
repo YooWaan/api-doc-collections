@@ -7,7 +7,7 @@
 		<title>API Doc 自動化の話</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/simple.css">
+		<link rel="stylesheet" href="css/theme/serif.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -110,13 +110,13 @@
 				</section>
 
 				<section>
-				  <h2>Github Star</h2>
-				  <img src="images/github-star.png" width="50%"></img>
+				  <p>Github Star</p>
+				  <img src="images/github-star.png" width="60%"></img>
                 </section>
 
                 <section>
-				  <h2>Google Trends</h2>
-				  <img src="images/docs-trends.png" width="50%"></img>
+				  <p>Google Trends</p>
+				  <img src="images/docs-trends.png" width="72%"></img>
                 </section>
 
 				<section>
@@ -137,7 +137,7 @@
 						<td>×</td>
 						<td>×</td>
 						<td>○</td>
-						<td>○</td>
+						<td>`</td>
 					</tr>
 					<tr>
 						<th>raml</th>
@@ -235,14 +235,9 @@ $ npm install aglio
 # generate html
 $ aglio -i aglio/api.md  -o dist/aglio-api.html
 </code></pre>
-				  <small>
-                  <p>
-                    <ul>
-                        <li>install 重い</li>
-                        <li>node ver 6 じゃないと...</li>
-                    </ul>
-				  </p>
-				  </small>
+
+                  <p>※ npm install 重い (C++ build)</p>
+                  <p>※ node ver 6 じゃないと...</p>
 				  
 				</section>
 
@@ -291,15 +286,15 @@ $ raml2html api.raml > dist/raml-api.html
 @apiSuccess (200) {Object[]} notes          notes list
 @apiSuccess (200) {String}   notes.message  notes message
 @apiSuccessExample {json} Success-Response:
-	HTTP/1.1 200 OK
-	[
-		{
-			"message": "Hello"
-		},
-		{
-			"message": "Hello"
-		}
-	]
+  HTTP/1.1 200 OK
+    [
+      {
+        "message": "Hello"
+      },
+      {
+        "message": "Hello"
+      }
+    ]
 """
 def get_notes():
   pass
@@ -353,10 +348,15 @@ $ bootprint openapi bootprint/swagger.yaml dist/bootprint
 				</section>
 
 				<section>
-						<h4>Swagger UI</h4>
+				  <h4>Swagger UI</h4>
 		
 				</section>
 
+
+				<section>
+				  <h4>Swagger UI command</h4>
+		                
+				</section>
 			</div>
 		</div>
 
