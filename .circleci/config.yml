@@ -17,6 +17,7 @@ jobs:
           name: Install packages
           command: |
             #sudo apt install build-essential python-pip
+            sudo apt -y install python-pip
             sudo pip install pyyaml
 
       - run:
