@@ -8,7 +8,7 @@ jobs:
     steps:
       - run:
           name: check ssh
-          command: ssh -vq git@github.com
+          command: ssh -v -oStrictHostKeyChecking=no git@github.com
 
       - checkout
       - restore_cache:
