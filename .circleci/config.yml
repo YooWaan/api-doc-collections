@@ -3,7 +3,7 @@ version: 2
 jobs:
   prep-and-docbuild:
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:12.10
     working_directory: ~/api-pages
     steps:
       - checkout
@@ -33,7 +33,7 @@ jobs:
 
   ghpages:
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:12.10
     working_directory: ~/api-pages
     steps:
       - checkout

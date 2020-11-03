@@ -12,16 +12,16 @@
     "openapi": "bootprint openapi bootprint/swagger.yaml dist/bootprint",
     "raml": "raml2html raml/api.raml > dist/raml-api.html",
     "apidoc": "apidoc -i apidoc -o dist/apidoc",
-	"swagger-ui": "cat bootprint/swagger.yaml | python swagger-ui/to-ui-html.py > dist/swagger-ui.html"
+    "swagger-ui": "cat bootprint/swagger.yaml | python swagger-ui/to-ui-html.py > dist/swagger-ui.html"
   },
   "license": "MIT",
   "devDependencies": {
     "aglio": "^2.3.0",
     "apidoc": "^0.17.7",
-    "bootprint": "^1.0.2",
-    "bootprint-openapi": "^1.1.0",
-    "js-yaml": "^3.12.1",
+    "bootprint": "^4.0.4",
+    "bootprint-openapi": "^4.0.4",
+    "js-yaml": "^3.14.0",
     "json-refs": "^3.0.12",
-    "raml2html": "^7.2.1"
+    "raml2html": "^7.6.0"
   }
 }
