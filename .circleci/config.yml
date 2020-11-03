@@ -7,8 +7,8 @@ jobs:
     working_directory: ~/api-pages
     steps:
       - run:
-        name: check ssh
-        command: ssh -v git@github.com
+          name: check ssh
+          command: ssh -v git@github.com
 
       - checkout
       - restore_cache:
