@@ -6,6 +6,10 @@ jobs:
       - image: circleci/node:12.10
     working_directory: ~/api-pages
     steps:
+      - run:
+        name: check ssh
+        command: ssh -v git@github.com
+
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
@@ -59,3 +63,7 @@ workflows:
       - ghpages:
           requires:
             - prep-and-docbuild
+          filters:
+            branches:
+              ignore:
+                - gh-pages
