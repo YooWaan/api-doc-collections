@@ -13,19 +13,21 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install packages
-          command: |
-            #sudo apt install build-essential python-pip
-            sudo apt -y install python-pip
-            sudo pip install pyyaml
 
       - run:
-          name: Install npm and build
+          name: Install npm
           command: |
             npm install
             mkdir -p dist/{apidoc,bootprint}
-            npm run build
+
+      - run:
+          name: build npm
+          command: |
+            npm run aglio
+            npm run bootprint
+            npm run raml
+            npm run apidoc
+
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -39,6 +41,34 @@ jobs:
           key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
           paths:
             - ~/api-pages/dist
+            - ~/api-pages/bootprint
+
+  python-build:
+    docker:
+      - image: circleci/python:3.8.0
+    working_directory: ~/api-pages
+    steps:
+      - checkout
+
+      - run:
+          name: Install packages
+          command: |
+            #sudo apt install build-essential python-pip
+            sudo apt -y install python-pip
+            sudo pip install pyyaml
+
+      - restore_cache:
+          key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
+
+      - run:
+          name: build npm
+          command: npm run swagger-ui
+
+      - save_cache:
+          key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
+          paths:
+            - ~/api-pages/dist
+            - ~/api-pages/bootprint
 
   ghpages:
     docker:
@@ -65,9 +95,23 @@ workflows:
   api_docs:
     jobs:
       - prep-and-docbuild
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+
+      - python-build
+          requires:
+            - prep-and-docbuild
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+
       - ghpages:
           requires:
             - prep-and-docbuild
+            - python-build
           filters:
             branches:
               ignore:
