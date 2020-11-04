@@ -94,13 +94,13 @@ workflows:
   version: 2
   api_docs:
     jobs:
-      - prep-and-docbuild
+      - prep-and-docbuild:
           filters:
             branches:
               ignore:
                 - gh-pages
 
-      - python-build
+      - python-build:
           requires:
             - prep-and-docbuild
           filters:
