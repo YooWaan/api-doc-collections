@@ -62,7 +62,8 @@ jobs:
 
       - run:
           name: build npm
-          command: npm run swagger-ui
+          command: cat bootprint/swagger.yaml | python swagger-ui/to-ui-html.py > dist/swagger-ui.html
+          # SHOULD use npm npm run swagger-ui
 
       - save_cache:
           key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
