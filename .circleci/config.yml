@@ -63,7 +63,7 @@ jobs:
       - run:
           name: build npm
           command: cat bootprint/swagger.yaml | python swagger-ui/to-ui-html.py > dist/swagger-ui.html
-          # SHOULD use npm npm run swagger-ui
+          # SHOULD use npm run swagger-ui
 
       - save_cache:
           key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
@@ -77,8 +77,21 @@ jobs:
     working_directory: ~/api-pages
     steps:
       - checkout
+
       - restore_cache:
           key: dist-cache-{{ "CIRCLE_BUILD_NUM" }}
+
+      - run:
+          name: prep
+          command: |
+            git config --global user.name "CircleCI"
+            git config --global user.email "circleci@example.com"
+            git checkout gh-pages
+
+      - add_ssh_keys:
+          fingerprints:
+            - "93:4f:69:48:bc:76:33:06:fc:b9:22:9a:c5:d3:f6:a7"
+
       - run:
           name: prep
           command: |
