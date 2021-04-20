@@ -1,0 +1,22 @@
+Note:
+  type: object
+  properties:
+    note:
+      type: string
+      descrition: note contents
+User:
+  type: object
+  properties:
+    name:
+      type: string
+      description: name of user.
+Error:
+  type: object
+  properties:
+    code:
+      type: integer
+      format: int32
+    message:
+      type: string
+    fields:
+      type: string
