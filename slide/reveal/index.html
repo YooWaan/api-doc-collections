@@ -1,0 +1,515 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>API Doc 自動化の話</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-markdown>
+				  <textarea data-template>
+					## 今日の話
+
+					* Document のツラミ
+					* Tool あれこれ
+					* 雑感・所感
+
+				  </textarea>
+				</section>
+
+				<section>
+				  <h2>今日話さない事</h2>
+
+				  <ul>
+					<li>ツールを使ったコード生成</li>
+					<li>テスト</li>
+					<li>モックサーバー</li>
+				  </ul>
+
+				</section>
+
+				<section>
+				  <h2>Document のツラミ</h2>
+
+				  <p>
+					その昔は、「<b>wiki</b>」「<b>Excel</b>」 とかで書いてがんばってた
+				  </p>
+
+				  <p>
+					wiki とか Excel とか差分がわからない問題もあった
+				  </p>
+
+				  <p>
+					そのたびに自動化してーと思いをつのらせていた
+				  </p>
+
+				</section>
+
+				<section>
+				  <h2>で、選択肢</h2>
+
+				  <ol>
+					<li>そのままWiki,Excel,Htmlとかで頑張る</li>
+					<li>ツールで頑張ろう</li>
+					<li>コードにコメント書ていこう</li>
+				  </ol>
+
+				</section>
+
+				<section>
+					<h2>Tools</h2>
+					
+				  <table>
+
+					<tr>
+					  <th>Name</th>
+					  <th>Format</th>
+					  <th>Links</th>
+					</tr>
+					<tr>
+					  <td>Blueprint</td>
+					  <td>markdown</td>
+					  <td><a href="https://apiblueprint.org/">apiblueprint.org</a></td>
+					</tr>
+					<h1></h1>
+					<tr>
+					  <td>apidocs</td>
+					  <td>@でソースに書く</td>
+					  <td><a href="http://apidocjs.com/">apidocjs.com</a></td>
+					</tr>
+					<tr>
+					  <td>raml</td>
+					  <td>yaml</td>
+					  <td><a href="https://raml.org/">raml.org</a></td>
+					</tr>
+					<tr>
+					  <td>openapi</td>
+					  <td>yaml or json</td>
+					  <td><a href="https://swagger.io">swagger.io</a></td>
+					</tr>
+				  </table>
+				</section>
+
+				<section>
+				  <p>Github Star</p>
+				  <img src="images/github-star.png" width="60%"></img>
+                </section>
+
+                <section>
+				  <p>Google Trends</p>
+				  <img src="images/docs-trends.png" width="72%"></img>
+                </section>
+
+				<section>
+					<h4>雰囲気で書いた</h4>
+
+					<table>
+					<tr>
+						<th>Name</th>
+						<th>Modeling</th>
+						<th>Code</th>
+						<th>Test</th>
+						<th>Doc</th>
+						<th>標準化</th>
+					</tr>
+					<tr>
+						<th>blueprint</th>
+						<td>×</td>
+						<td>〇</td>
+						<td>〇</td>
+						<td>〇</td>
+						<td>△</td>
+					</tr>
+					<tr>
+						<th>raml</th>
+						<td>〇</td>
+						<td>〇</td>
+						<td>〇</td>
+						<td>〇</td>
+						<td>△</td>
+					</tr>
+					<tr>
+						<th>apidocs</th>
+						<td>×</td>
+						<td>×</td>
+						<td>×</td>
+						<td>〇</td>
+						<td>×</td>
+					</tr>
+					<tr>
+						<th><small>openapi</small></th>
+						<td>○</td>
+						<td>○</td>
+						<td>○</td>
+						<td>○</td>
+						<td>○</td>
+					</tr>
+					</table>
+				</section>
+
+				<section>
+						<h2>多分決めの視点</h2>
+	
+						<ul>
+						<li>書きやすさ</li>
+						<li>出力の見やすさ
+						<li>第3者などへの渡し易さ</li>
+						<li>必要な項目の充実</li>
+						<li>学習コスト</li>
+						<li>エコシステムの充実</li>
+						</ul>
+	
+				</section>
+	
+				<section>
+				  <h2>私の回遊の話</h2>
+				  <ol>
+
+				  <li>
+					bootprint(openapi) のAPI仕様書があった
+				  </li>
+
+				  <li>
+					なんか出力Htmlよくわからないな...
+				  </li>
+
+				  <li>
+					<a href="https://qiita.com/sheepland/items/b4a0d03941f2e3cd8eaa">API Blueprintとその周辺ツール</a>
+					見た目良さげやん これや
+				  </li>
+
+				  <li>
+					Blueprint 界隈盛り上がらないな Openapi 強いからこれにしよ
+					Htmlも切れになったし ← イマココ
+				  </li>
+
+				  </ol>
+
+				</section>
+
+				<section>
+				  <h2>API Blueprint vs Swagger</h2>
+
+				  <a href="https://stackshare.io/stackups/api-blueprint-vs-swagger-ui">Stackshareの比較</a>
+
+					<p>
+						上記サイトでも、GithubStarでも
+					</p>
+					<p>
+						API BluePrintは下火なのでやめた
+					</p>
+
+				</section>
+
+				<section>
+
+					<h1>あとは、各ツールの雑感</h1>
+
+				</section>
+
+				<section>
+				  <h4>API Blueprint</h4>
+
+<pre><code class="markdown">FORMAT: 1A
+
+# Group Notes
+
+## My Notes [/notes]
+
+### Retrieve a Message [GET]
+
++ Response 200 (application/json)
+      + Body
+
+            [
+              { "note": "Hello World!" },
+              { "note": "see you" }
+            ]
+</code></pre>
+				</section>
+
+
+				<section>
+				  <h4>API Blueprint Command</h4>
+
+                  <pre>
+<code class="shell"># install
+$ npm install aglio
+
+# generate html
+$ aglio -i aglio/api.md  -o dist/aglio-api.html
+</code></pre>
+
+                  <p>※ npm install 重い (C++ build)</p>
+                  <p>※ node ver 6 じゃないと...</p>
+				  
+				</section>
+
+				
+				<section>
+					<h4>Raml</h4>
+
+					<pre><code class="yaml">#%RAML 1.0
+title: RAML sample api
+version: 1
+baseUri: http://example.com/v1
+/notes:
+  description: notes for users
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "note": "Hello world"
+              }</code></pre>
+
+				</section>
+
+				<section>
+					<h4>Raml Command</h4>
+<pre><code class="shell"># install
+$ npm install -g raml2html
+
+# generate html
+$ raml2html api.raml > dist/raml-api.html
+</code></pre>
+
+				</section>
+
+				<section>
+						<h4>apiDocs</h4>
+
+<pre style="font-size:16px;"><code class="python">"""
+@api {get} /notes Request User's notes
+@apiVersion 0.1.0
+@apiName Notes List
+@apiGroup Notes
+@apiParam {String} q search query.
+@apiSuccess (200) {Object[]} notes          notes list
+@apiSuccess (200) {String}   notes.message  notes message
+@apiSuccessExample {json} Success-Response:
+  HTTP/1.1 200 OK
+    [
+      {
+        "message": "Hello"
+      },
+      {
+        "message": "Hello"
+      }
+    ]
+"""
+def get_notes():
+  pass
+</code></pre>
+				</section>
+
+				<section>
+					<h4>apiDocs</h4>
+
+<pre><code class="shell"># install
+$ npm install -g apidoc
+
+# generate html
+$ apidoc -i apidoc -o dist/apidoc.html
+</code></pre>
+
+				</section>
+
+				<section>
+					<h4>Bootprint</h4>
+<pre style="font-size:16px;"><code class="yaml">swagger: '2.0'
+info:
+  title: Example API
+  description: API Document Collections
+  version: '1.0.0'
+# the domain of the service
+host: api-doc.example.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  $ref: './src/paths.yaml'
+definitions:
+  $ref: './src/definitions.yaml'</code></pre>
+				</section>
+
+				<section>
+						<h4>Bootprint Command</h4>
+<pre><code class=""># install
+$ npm install bootprint
+$ npm install bootprint-openapi
+
+# generate html
+$ bootprint openapi bootprint/swagger.yaml dist/bootprint
+</code></pre>
+									
+				</section>
+
+				<section>
+					<h4>Swagger UI</h4>
+					
+					<ul>
+						<li>index.ymal
+							<ul>
+								<li>paths.yaml : Endpoint 定義</li>
+								<li>definition.yaml : Payload 定義</li>
+							</ul>
+						</li>
+					</ul>
+
+					<p><small>index.yaml</small></p>
+<pre><code class="yaml">swagger: '2.0'
+info:
+  title: Example API
+  description: API Document Collections
+  version: '1.0.0'
+
+paths:
+  $ref: './src/paths.yaml'
+definitions:
+  $ref: './src/definitions.yaml'</code></pre>
+
+				</section>
+				<section>
+						<h4>Swagger UI</h4><span><small>paths.yaml</small></span>
+<pre><code class="yaml">/notes:
+get:
+  summary: notes
+  description: nothing.
+  parameters:
+    - name: q
+      in: query
+      description: search query
+      required: false
+      type: strig
+  tags:
+    - Notes
+  responses:
+    200:
+      description: An array of notes</code></pre>
+				</section>
+				<section>
+					<h4>Swagger UI </h4><span><small>definitions.yaml</small></span>
+<pre><code class="yaml">Note:
+	type: object
+	properties:
+  note:
+  	type: string
+  	descrition: note contents
+User:
+	type: object
+	properties:
+  name:
+  	type: string
+  	description: name of user.</code></pre>
+
+				</section>
+
+				<section>
+				  <h4>Swagger UI command</h4>
+
+<pre><code class="shell"># install
+$ npm install js-yaml json-refs
+$ npm install swagger-cli 
+
+# generate yaml
+$ node build.js # generate swagger.yaml
+$ swagger-cli bundle index.yaml -o swagger.yaml
+
+# generate html
+$ cat xxx/swagger.yaml | python to-ui-html.py > dist/swagger-ui.html
+</code></pre>
+
+				</section>
+
+				<section>
+					<h2>OpenApi 3.0 (OAS)</h2>
+
+					<a href="https://bitbucket.org/brainpad/basarabia-docs/diff/backend-resource/swagger.yaml?at=master&diff1=14e67a99242891a332535d8b90ce7947fd20fa10&diff2=c2bb98c73b9c2d833874173dd7939e8085e6ee70">[比較]</a>
+					<a href="https://storage.cloud.google.com/msp-docs/backend-resource/backend.html">[サンプル]</a>
+					<ul>
+						<li><a href="https://guides.github.com/features/mastering-markdown/">GitHub Flavored</a> -> <a href="https://commonmark.org/help/">CommonMark</a> になった</li>
+						<li>security, paths, definitions, response が components配下に移動</li>
+						<li>parameters の型宣言が schema 配下に移動</li>
+						<li>parameters からJSONが requestBodyに移動</li>
+						<li>response の書き方が変わった</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h2>まとめ</h2>
+
+					<p>
+						api blueprint <a href="https://apiblueprint.org/documentation/">Doc</a>,
+						 <a href="https://apiblueprint.org/tools.html#editors">Edit</a>,
+						 <a href="https://apiblueprint.org/tools.html#testing">Test</a>,
+						 <a href="https://apiblueprint.org/documentation/specification.html">Spec</a>
+					</p>
+					<p>
+						raml
+							<a href="https://raml.org/developers/document-your-api">Doc</a>,
+							<a href="https://raml.org/developers/build-your-api">Build</a>,
+							<a href="https://raml.org/developers/test-your-api">Test</a>,
+							<a href="https://github.com/raml-org/raml-spec">Spec</a>
+					</p>
+					<p>
+						apidoc
+							<a href="http://apidocjs.com/">Doc</a>
+					</p>
+					<p>
+						swagger(openapi)
+							<a href="https://swagger.io/docs/specification/about/">Doc</a>,
+							<a href="https://swagger.io/docs/open-source-tools/swagger-editor/">Edit</a>,
+							<a href="https://swagger.io/docs/swagger-inspector/how-to-use-swagger-inspector/">Test</a>,
+							<a href="https://swagger.io/resources/open-api/">Spec</a>
+					</p>
+
+					<p>興味あるかたはどうぞ</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

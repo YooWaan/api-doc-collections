@@ -1,0 +1,27 @@
+{
+  "name": "api_collection_tools",
+  "version": "1.0.0",
+  "description": "sample api doc",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo js",
+    "build": "for a in `echo 'aglio bootprint raml apidoc swagger-ui'`; do npm run $a ;done",
+    "aglio": "aglio -i aglio/api.md -o dist/aglio-api.html",
+    "bootprint": "npm run swagger2 && npm run openapi",
+    "swagger2": "cd bootprint && node build.js > swagger.yaml",
+    "openapi": "bootprint openapi bootprint/swagger.yaml dist/bootprint",
+    "raml": "raml2html raml/api.raml > dist/raml-api.html",
+    "apidoc": "apidoc -i apidoc -o dist/apidoc",
+    "swagger-ui": "cat bootprint/swagger.yaml | python swagger-ui/to-ui-html.py > dist/swagger-ui.html"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "aglio": "^2.3.0",
+    "apidoc": "^0.17.7",
+    "bootprint": "^1.0.2",
+    "bootprint-openapi": "^1.1.0",
+    "js-yaml": "^3.12.1",
+    "json-refs": "^3.0.12",
+    "raml2html": "^7.2.1"
+  }
+}

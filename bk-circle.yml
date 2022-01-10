@@ -1,0 +1,39 @@
+machine:
+  timezone:
+    Asia/Tokyo
+
+
+general:
+  artifacts:
+    - "dist/aglio-api.html"
+
+dependencies:
+  pre:
+    # for publish github.io
+    - git config --global user.name "CircleCI"
+    - git config --global user.email "circleci@example.com"
+    # for aglio
+    - npm install -g aglio
+    # for bootprint openapi
+    - npm install
+    - npm install -g bootprint
+    - npm install -g bootprint-openapi
+    # for rmal
+    - npm install -g raml2html
+    # for apidoc
+    - npm install -g apidoc
+
+test:
+  pre:
+    - sh build.sh
+    - mv index.html new.html
+
+deployment:
+  public:
+    branch: master
+    commands:
+      - git fetch && git checkout gh-pages
+      - mv new.html index.html
+      - cp -r dist/* samples/
+      - git add index.html && git add samples && git commit -m "ci build [$CIRCLE_BUILD_NUM] commit"
+      - git push origin gh-pages

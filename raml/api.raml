@@ -1,0 +1,53 @@
+#%RAML 1.0
+title: RAML sample api
+version: 1
+baseUri: http://example.com/v1
+documentation:
+  - title: This is title
+    content: |
+      raml api document sample.
+
+/notes:
+  description: notes for users
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "note": "Hello world"
+              }
+  put:
+    body:
+      application/json:
+        properties:
+          name:
+            description: name on account
+            type: string
+    responses:
+      200:
+        body:
+          application/json:
+            type: |
+              {
+                "message": "update"
+              }
+
+/users:
+  description: user list
+  get:
+    queryParameters:
+      name:
+        type: string
+        description: user name
+
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+                { "name": "tom" },
+                { "name": "sam" }
+              ]
